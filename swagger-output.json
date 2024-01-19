@@ -7,19 +7,13 @@
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "tags": [
-    {
-      "name": "User",
-      "description": "Endpoints"
-    }
-  ],
   "schemes": [
     "http",
     "https"
   ],
   "securityDefinitions": {
     "apiKeyAuth": {
-      "type": "authorization",
+      "type": "apiKey",
       "in": "header",
       "name": "authorization",
       "description": "Bearer Token"
@@ -32,29 +26,6 @@
     "application/json"
   ],
   "paths": {
-    "/auth/login": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {}
-      }
-    },
     "/auth/signup": {
       "post": {
         "description": "",
@@ -72,17 +43,25 @@
                   "example": "any"
                 },
                 "dob": {
-                  "example": "any"
+                  "type": "string",
+                  "format": "date",
+                  "example": "2022-01-10"
                 }
               }
             }
           }
+        ],
+        "tags": [
+          "User Signup"
         ],
         "responses": {}
       }
     },
     "/auth/account-activation/{token}": {
       "post": {
+        "tags": [
+          "Account Activation"
+        ],
         "description": "",
         "parameters": [
           {
@@ -107,8 +86,37 @@
         "responses": {}
       }
     },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "User Login"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
     "/auth/reset-password": {
       "post": {
+        "tags": [
+          "Reset Password"
+        ],
         "description": "",
         "parameters": [
           {
@@ -129,6 +137,9 @@
     },
     "/auth/update-password/{token}": {
       "post": {
+        "tags": [
+          "Update Password"
+        ],
         "description": "",
         "parameters": [
           {
@@ -155,13 +166,44 @@
     },
     "/user/profile": {
       "get": {
+        "tags": [
+          "Get User Profile"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       }
     },
-    "/user/preference": {
+    "/preference/": {
+      "get": {
+        "tags": [
+          "Get Preference"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/preference/createPreference": {
       "post": {
+        "tags": [
+          "Create Preference"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
         "description": "",
         "parameters": [
           {
@@ -170,7 +212,8 @@
             "schema": {
               "type": "object",
               "properties": {
-                "preferences": {
+                "preference": {
+                  "type": "string",
                   "example": "any"
                 }
               }
@@ -180,10 +223,35 @@
         "responses": {}
       }
     },
-    "/preference/": {
-      "get": {
+    "/user/preference": {
+      "post": {
+        "tags": [
+          "Create User Preference"
+        ],
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "preferenceIds",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "preferenceIds": {
+                  "type": "array",
+                  "items": {
+                    "example": "1"
+                  }
+                }
+              }
+            }
+          }
+        ],
         "responses": {}
       }
     }

@@ -20,11 +20,11 @@ const doc = {
     ],
     securityDefinitions: {
         apiKeyAuth: {
-            type: "authorization",
-            in: "header",       // can be "header", "query" or "cookie"
-            name: "authorization",  // name of the header, query parameter or cookie
-            description: "Bearer Token"
-        }
+            type: 'apiKey',
+            in: 'header',
+            name: 'Authorization',
+            description: 'Bearer Token',
+        },
     },
     definitions: {
         User: {

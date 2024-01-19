@@ -1,0 +1,28 @@
+const Global = {
+  INVALID_AUTHORIZATION: "Invalid Authorization",
+  USER_NOT_REGISTERED: "User not registered",
+  USER_NOT_FOUND: "User not found",
+  USER_NOT_ACTIVE: "User not active",
+  CRED_NOT_SET: "Credential not set",
+  AUTH_FAILURE: "Authentication failure",
+  LOGIN_SUCCESS: "Login Success",
+  USER_ALREADY_REGISTERED: "User already registered",
+  SIGNUP_SUCCESS: "Signup Successfully",
+  INVALID_ACCOUNT_TOKEN: "Invalid account activation token.",
+  ACCOUNT_SUCCESS: "Account Activated Successful",
+  RESET_SUCCESS: "Reset Link Successful",
+  PASSWORD_SUCCESS: "Password Updated Successfully",
+  USER_PROFILE: "User Profile",
+  PREFERENCE_LIST: "Preference List",
+  PREFERENCE_UPDATE_SUCCESS: "Preferences Updated Successfully",
+  INVALID_CREDENTIALS: "Invalid Email or Password",
+  SOMETHING_WENT_WRONG: "Something went wrong please try again.",
+  PREFERENCE_ALREADY_EXISTS: "Preference already exists.",
+  ENTER_PREFERENCE: "Please enter preference",
+  NO_PREFERENCE: "No preference available",
+  INVALID_TOKEN: "Invalid token",
+  TOKEN_IS_MISSING: "Authorization token is missing",
+  PREFERENCEID_IS_MISSING: "PreferenceId should not be blank",
+};
+
+export default Global;

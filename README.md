@@ -1,47 +1,65 @@
-# REST API Example
+# Node prisma APIs
+
+## Overview
+Developed Prisma CRUD APIs using TypeScript, seamlessly integrating with both MongoDB and MySQL databases. The implementation adheres to best practices and leverages the latest methodologies for authentication. The codebase follows a well-organized folder structure, ensuring clarity and maintainability.
+
+## Library Used
+-- Prisma
+-- TypeScript
+-- MongoDB
+-- MySQL
+-- Node.js
+
+## Features & Functionality in the project:
+
+Next-Generation API Development:
+ Implementation of APIs using cutting-edge technologies such as Prisma, TypeScript, MongoDB, MySQL, and Node.js.
+
+Account Management:
+ User-friendly features including Account Activation, User Login, Reset Password, and Update Password.
+
+User Profile and Preferences:
+ Seamless retrieval of User Profiles and Preferences.
+ Creation of User Preferences with a focus on customization.
+
+This project showcases a robust API development, ensuring secure and efficient account management along with personalized user experiences through profile and preference functionalities
 
 ## Getting started
 
-### 1. Download example and install dependencies
+To get started with this project, follow these steps:
 
-Download this example:
-Install npm dependencies:
+### 1. Clone repository:
+    ```bash
+    git clone https://github.com/synsoft-global/node-prisma-TS-ecom-apis.git
+    ```
 
-```
-npm install
-```
+### 2. Install dependencies:
+    ```bash
+    npm install
+    ```
 
-<details><summary><strong>For Swagger Documentation:</strong></summary>
+### 3. Run this commands:
+    ```
+    1. npm run prisma-generate-all
+    ```
 
-Run this command:
+    ```
+    2. npm run prisma-migrate-sql
+    ```
 
-```
-npm run start-gendoc
-```
-
-</details>
-
-### 2. Create and seed the database
-
-Run the following command to create your SQLite database file. This also creates tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
-
-```
-npm run prisma-migrate
-```
-
-When `npm run prisma-migrate` is executed against a newly created database, seeding is also triggered. The seed file in [`prisma/seed.ts`](./prisma/seed.ts) will be executed and your database will be populated with the sample data.
-
-
-### 3. Start the REST API server
-
-```
-npm run dev
-```
-
-The server is now running on `http://localhost:3000`. You can now the API requests, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
+### 4. Run development server:
+    ```bash
+    npm run dev
+    ```
+    The server is now running on `http://localhost:3000`.
+    
 
 ## Using the REST API Using Swagger
-
 You can access the REST API of the server using the following endpoints:
-
 `http://localhost:3000/doc`
+
+
+### Seeding data through this command
+ ```bash
+    npm run seed
+    ```

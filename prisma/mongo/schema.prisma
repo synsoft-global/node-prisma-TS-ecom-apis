@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url = env("DATABASE_URL_MONGODB")
+}
+
+model User {
+  id           String @id @default (auto()) @map("_id") @db.ObjectId
+  email        String @unique
+  name         String
+  password     String ?
+  dob          DateTime ?
+  active       Boolean ? @default (false)
+  preferences  UserPreferences[]
+  token        UserActivationToken ?
+  createdAt    DateTime @default (now())
+}
+
+model UserActivationToken {
+  id       String @id @default (auto()) @map("_id") @db.ObjectId
+  userId   String @unique
+  user     User ? @relation(fields: [userId], references: [id])
+  token    String @unique
+}
+
+model UserPreferences {
+  id           String @id @default (auto()) @map("_id") @db.ObjectId
+  user         User ? @relation(fields: [userId], references: [id])
+  userId       String @db.ObjectId
+  preference   Preferences ? @relation(fields: [preferenceId], references: [id])
+  preferenceId String
+}
+model Preferences {
+  id         String @id @default (auto()) @map("_id") @db.ObjectId
+  preference String @unique
+  userPreferences UserPreferences[]
+}

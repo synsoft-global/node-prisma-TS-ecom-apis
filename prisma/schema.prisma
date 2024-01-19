@@ -4,38 +4,38 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      =  env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique 
-  name  String
-  password  String?
-  dob DateTime?
-  active Boolean? @default(false)
+  id          Int                  @id @default(autoincrement())
+  email       String               @unique
+  name        String
+  password    String?
+  dob         DateTime?
+  active      Boolean?             @default(false)
   preferences UserPreferences[]
-  token UserActivationToken?
-  createdAt DateTime @default(now())
+  token       UserActivationToken?
+  createdAt   DateTime             @default(now())
 }
 
 model UserActivationToken {
-  id        Int @id @default(autoincrement())    
-  userId  Int
-  user    User? @relation(fields: [userId], references: [id])
-  token String @unique 
+  id     Int    @id @default(autoincrement())
+  userId Int    @unique
+  user   User?  @relation(fields: [userId], references: [id])
+  token  String @unique
 }
 
 model Preferences {
-    id      Int      @id @default(autoincrement()) 
-    preference String
-    UserPreferences UserPreferences[]
+  id              Int               @id @default(autoincrement())
+  preference      String
+  UserPreferences UserPreferences[]
 }
 
 model UserPreferences {
-  id      Int      @id @default(autoincrement())    
-  user    User?    @relation(fields: [userId], references: [id])
-  userId  Int?
-  preference    Preferences ?    @relation(fields: [preferenceId], references: [id])
-  preferenceId  Int?
+  id           Int          @id @default(autoincrement())
+  user         User?        @relation(fields: [userId], references: [id])
+  userId       Int?
+  preference   Preferences? @relation(fields: [preferenceId], references: [id])
+  preferenceId Int?
 }

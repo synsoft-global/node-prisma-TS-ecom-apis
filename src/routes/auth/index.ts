@@ -36,6 +36,7 @@ router.post(
     '/signup',
     validator(schema.signup),
     asyncHandler(async (req: any, res) => {
+        console.log("-------req.body----------------------",req.body);
         const user = await UserRepo.findByEmail(req.body.email);
         if (user) throw new BadRequestError(Global.USER_ALREADY_REGISTERED);
         const createdUser = await UserRepo.create({
@@ -44,14 +45,16 @@ router.post(
             dob: new Date(req.body.dob)
         });
         const tokens = await createTokens(createdUser);
+        console.log("-------tokens----------------------",tokens);
         const accountActivationTokens = await getAccountActivationToken(createdUser);
-
+        console.log("-------accountActivationTokens----------------------",accountActivationTokens);
+        console.log("-------createdUser----------------------",createdUser);
         new SuccessResponse(Global.SIGNUP_SUCCESS, {
             user: _.pick(createdUser, ['_id', 'name', 'email']),
             tokens: tokens,
             "account-actiation-url": req.protocol + '://' + req.get('host') + '/auth/account-activation/' + accountActivationTokens
         }).send(res);
-
+        console.log("-----------------------------",);
     }),
 );
 
